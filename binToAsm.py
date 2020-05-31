@@ -34,15 +34,23 @@ with open('output.asm', 'w') as out:
 		address += int(inst[0][4])
 		ops = inst[0][2]
 		operands = ops.split()
-		if 'Data' in ops:
+		if ' Data' in ops:
+			dat = inst[1]
+			ops = ops.replace(' Data', "," + dat)
+		elif 'Data' in ops:
 			dat = inst[1]
 			ops = ops.replace('Data', dat)
+		elif ' Address' in ops:
+			label = inst[2] + inst[1]
+			ops = ops.replace(' Address', "," + label)
 		elif 'Address' in ops:
 			label = inst[2] + inst[1]
 			ops = ops.replace('Address', label)
 		elif '-' in ops:
 			ops = str()
+		else:
+			ops = ops.strip().replace(' ', ',')
 
-		outstr = (addr + " : " + inst[0][1] + (',' if ops else "") + ops).strip()
+		outstr = (addr + " : " + inst[0][1] + " " + ops).strip()
 		print(outstr)
 		out.write(outstr + "\n")
