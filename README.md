@@ -1,9 +1,5 @@
 # 8085-disassembler
 
-I made this just for learning, anyone can use this if he/she wants for any thing....
-
-Thank you....
-
 #### Usage :-
   * Download and run binToAsm.exe file (Alternatively code is also provided)
   * Then it'll ask for the binary file(It should be a binary for 8085 intel processor) [As an example one file is provided]
